@@ -4,30 +4,13 @@
    # caching and startup very fast, so your users will often only see this 
    # content for a brief moment on their first app load, if at all.
 %>
-  <!--Include YUI Loader: --> 
-  <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yuiloader/yuiloader-min.js"></script> 
- 
-  <!--Use YUI Loader to bring in your other dependencies: --> 
-  <script type="text/javascript"> 	
-  // Instantiate and configure YUI Loader: 
-    (function() { 
-	  var loader = new YAHOO.util.YUILoader({ 
-	    base: "", 
-	    require: ["treeview"], 
-        loadOptional: false, 	       
-        combine: true, 
-	    filter: "MIN", 
-	    allowRollup: true, 
-        onSuccess: function() { 
-	      //you can make use of all requested YUI modules 
-	      //here. 
-	    } 
-	 }); 
- 
-    // Load the files using the insert() method. 	
-    loader.insert(); 
-    })(); 
-  </script> 
+<link type="text/css" rel="stylesheet" href="/static/mvo_edge/en/current/source/lproj/lib/build/treeview/assets/skins/sam/treeview.css" />         
+
+<script src = "/static/mvo_edge/en/current/source/lproj/lib/build/yahoo/yahoo-min.js" ></script>
+<script src = "/static/mvo_edge/en/current/source/lproj/lib/build/event/event-min.js" ></script> 
+<script src = "/static/mvo_edge/en/current/source/lproj/lib/build/yahoo-dom-event/yahoo-dom-event.js" ></script>
+<script src = "/static/mvo_edge/en/current/source/lproj/lib/build/element/element-beta-min.js"></script>
+<script src = "/static/mvo_edge/en/current/source/lproj/lib/build/treeview/treeview-min.js" ></script>
 <p class="loading">Loading application Mvo Edge...<p>
 
 <% end %>
