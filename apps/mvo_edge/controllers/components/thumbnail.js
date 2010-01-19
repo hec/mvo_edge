@@ -59,8 +59,13 @@ MvoEdge.thumbnailController = SC.ArrayController.create(
         var label = node.get('label');
         // to create thumbnail url
         var defaultUrl = node.get('urlDefault');
-        var thumbnailUrl = MvoEdge.configurator.getThumbnailUrl(defaultUrl);
-
+        if (defaultUrl.match('pdf')){
+          thumbnailUrl = MvoEdge.configurator.getPdfThumbnailUrl(
+            defaultUrl, node.get('sequenceNumber'));
+        }
+        else{
+          thumbnailUrl = MvoEdge.configurator.getThumbnailUrl(defaultUrl);
+        }
         var thumbnailHash = {
             guid: id,
             url: thumbnailUrl,

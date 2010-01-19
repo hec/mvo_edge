@@ -48,15 +48,21 @@ MvoEdge.configurator = SC.Object.create(
   
   */
   baseUrlParameters: {
-    "get": "/multivio/document/get?url=", // to be used with the python server
+    "get": "/multivio/cdm/get?url=", // to be used with the python server
     //"get": "/zircon/Client?cl=dfst.StructureParser&act=getDoc&recid=" // to be used with the Java servlet
     
-    "thumbnail": "/multivio/document/thumbnail?size=100&url=",
+    "thumbnail": "/multivio/document/get?width=100&url=",
     
     "image": {
-      "small":  "/multivio/document/thumbnail?size=500&url=",
-      "normal": "/multivio/document/thumbnail?size=1000&url=",
-      "big":    "/multivio/document/thumbnail?size=1500&url="
+      "small":  "/multivio/document/get?width=500&url=",
+      "normal": "/multivio/document/get?width=1000&url=",
+      "big":    "/multivio/document/get?width=1500&url="
+    },
+    
+    "pdf": {
+      "small":  "/multivio/document/get?width=500&url=",
+      "normal": "/multivio/document/get?width=1000&url=",
+      "big":    "/multivio/document/get?width=1500&url="
     },
     
     "fixtures": {
@@ -128,7 +134,7 @@ MvoEdge.configurator = SC.Object.create(
     switch (scenario) {
     
     case 'get':
-      modifiedUrl = this.getPath('baseUrlParameters.image.small');
+      modifiedUrl = this.getPath('baseUrlParameters.image.normal');
       modifiedUrl += url;
       break;
     
@@ -173,6 +179,61 @@ MvoEdge.configurator = SC.Object.create(
       break;
     }
     return modifiedUrl;
-  }
+  },
+  
+  /**
+      @method
+
+      Return the adapted url for the thumbnail image
+
+      @param {String} url the default url of the image
+      @return {String} the new encoded url
+    */
+    getPdfThumbnailUrl: function (url, pageNumber) {
+      var scenario = this.get('inputParameters').scenario;
+      var modifiedUrl;
+
+      switch (scenario) {
+
+      case 'get':
+        modifiedUrl = this.get('baseUrlParameters').thumbnail;
+        modifiedUrl += url;
+        modifiedUrl += "&pagenr=" + pageNumber;
+        break;
+
+      default:
+        modifiedUrl = undefined;
+        break;
+      }
+      return modifiedUrl;
+    },
+
+    /**
+      @method
+
+      Return the adapted url for a pdf page
+
+      @param {String} url the url of the pdf document
+      @param {Number} the page number
+      @return {String} the new encoded url
+    */
+    getPdfUrl: function (url, pageNb) {
+      var scenario = this.getPath('inputParameters.scenario');
+      var modifiedUrl;
+      switch (scenario) {
+
+      case 'get':
+        modifiedUrl = this.getPath('baseUrlParameters.pdf.normal');
+        modifiedUrl += url;
+        modifiedUrl += "&pagenr=" + pageNb;
+        break;
+
+      default:
+        modifiedUrl = undefined;        
+        break;
+      }
+      return modifiedUrl;
+    }
+  
 
 });
