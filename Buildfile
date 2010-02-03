@@ -6,4 +6,4 @@
 
 # Add initial buildfile information here
 config :all, :required => [:sproutcore, :LOG]
-#proxy '/server', :to => 'demo.multivio.org'
+proxy '/server', :to => 'demo.multivio.org'
