@@ -35,7 +35,7 @@ MvoEdge.zoomController = SC.ObjectController.create(
     Current zoom factor: multiplicative value applied to the original image
     size; it is exponentially proportional to the current zoom step:
 
-      current_zoom_factor = ZOOM_FACTOR ^ _current_zoom_step 
+    current_zoom_factor = ZOOM_FACTOR ^ _current_zoom_step 
 
     @property {Integer}
     @default 1
@@ -60,8 +60,7 @@ MvoEdge.zoomController = SC.ObjectController.create(
   */  
   doZoomIn: function () {
     if (this._current_zoom_step < this.ZOOM_MAX_STEP) {
-      this.set('_current_zoom_step', this._current_zoom_step + 1);
-      this.set('current_zoom_factor', Math.pow(this.ZOOM_FACTOR, this._current_zoom_step));
+      this._setCurrentValue(this._current_zoom_step + 1);
     }
   },
 
@@ -73,8 +72,7 @@ MvoEdge.zoomController = SC.ObjectController.create(
   */   
   doZoomOut: function () {
     if (this._current_zoom_step > this.ZOOM_MIN_STEP) {
-      this.set('_current_zoom_step', this._current_zoom_step - 1);
-      this.set('current_zoom_factor', Math.pow(this.ZOOM_FACTOR, this._current_zoom_step));
+      this._setCurrentValue(this._current_zoom_step - 1);
     }    
   },
   
@@ -95,8 +93,9 @@ MvoEdge.zoomController = SC.ObjectController.create(
     Return the zoomFactor for a specific step
     
     @param {Number} step
+    @private
   */
-  getZoomFactorForThisStep: function (step) {
+  _zoomFactorForStep: function (step) {
     return Math.pow(this.ZOOM_FACTOR, step);
   },
   
@@ -106,12 +105,13 @@ MvoEdge.zoomController = SC.ObjectController.create(
     Return YES if ZOOM_MIN_STEP =< step <=  ZOOM_MAX_STEP else return NO
     
     @param {Number} step
+    @private
   */  
-  isZoomStepValid: function (step) {
-    if(step >= this.ZOOM_MIN_STEP && step <=  this.ZOOM_MAX_STEP){
+  _isZoomStepValid: function (step) {
+    if (step >= this.ZOOM_MIN_STEP && step <=  this.ZOOM_MAX_STEP) {
       return YES;
     }
-    else{
+    else {
       return NO;
     }
   },
@@ -122,15 +122,69 @@ MvoEdge.zoomController = SC.ObjectController.create(
     Set _current_zoom_step and current_zoomFactor
     
     @param {Number} step
+    @private
   */
-  setCurrentValue: function (step) {
-    if(this.isZoomStepValid(step)){
+  _setCurrentValue: function (step) {
+    if (this._isZoomStepValid(step)) {
       this.set('_current_zoom_step', step);
       this.set('current_zoom_factor', Math.pow(this.ZOOM_FACTOR, this._current_zoom_step));
-      MvoEdge.logger.debug('zoomController set cuurent value');
     }
     else {
-      MvoEdge.logger.info('unable to set this zoom step value ' + step);
+      MvoEdge.logger.warn('unable to set this zoom step value ' + step);
     }
   },
+  
+  /**
+    @method
+    
+    Set zoomFactor and zoomStep according to the size of the first image 
+    and to the size of the view. The goal is to resize the image so that it is
+    totally visible
+    
+    @param {Number} viewWidth
+    @param {Number} viewHeight
+    @param {Number} imageWidth
+    @param {Number} imageHeight
+  */   
+  setBestZoom: function (viewWidth, viewHeight, imageWidth, imageHeight) {       
+    var zoomFactor = this.get('current_zoom_factor');
+    var zoomStep = this.get('_current_zoom_step');  
+    
+    var isWidthOK = imageWidth * zoomFactor < viewWidth ? YES : NO;
+    //adjust first width
+    while (!isWidthOK) {
+      zoomStep--;
+      if (this._isZoomStepValid(zoomStep)) {
+        zoomFactor = this._zoomFactorForStep(zoomStep);
+        if (imageWidth * zoomFactor < viewWidth) {
+          isWidthOK = YES;
+        }
+      }
+      else {
+        //if zoomStep is not valid stop minimize 
+        zoomStep ++;
+        isWidthOK = YES;
+      }     
+    }
+    
+    var isHeightOK = imageHeight * zoomFactor < viewHeight ? YES : NO;
+    //adjust height
+    while (!isHeightOK) {
+      zoomStep--;
+      if (this._isZoomStepValid(zoomStep)) {
+        zoomFactor = this._zoomFactorForStep(zoomStep);
+        if (imageHeight * zoomFactor < viewHeight) {
+          isHeightOK = YES;
+        }
+      }
+      else {
+        //if zoomStep is not valid stop minimize 
+        zoomStep ++;
+        isHeightOK = YES;
+      }
+    }
+    this._setCurrentValue(zoomStep);
+    MvoEdge.logger.info('zoomController zoom values adjusted');
+  }
+  
 });

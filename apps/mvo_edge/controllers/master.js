@@ -31,6 +31,13 @@ MvoEdge.masterController = SC.ArrayController.create(
   masterSelection: undefined,
   
   /**
+    @property {Boolean}
+    
+    Say if it's the first file. Set to YES during initialization  
+  */   
+  isFirstFile: undefined,
+  
+  /**
     @method
 
     Initialize the master controller, its content
@@ -38,6 +45,7 @@ MvoEdge.masterController = SC.ArrayController.create(
     @param {SC.RecordArray} nodes records of the Core Document Model
   */
   initialize: function (nodes) {
+    this.set('isFirstFile', YES);
     this.set('content', nodes);
     MvoEdge.logger.info('masterController initialized');
   },

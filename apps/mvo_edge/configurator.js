@@ -55,9 +55,9 @@ MvoEdge.configurator = SC.Object.create(
     thumbnail: "/server/document/get?width=100&url=",
     
     image: {
-      small:  "/server/document/get?width=1500&url=",
-      normal: "/server/document/get?width=2000&url=",
-      big:    "/server/document/get?width=2500&url="
+      small:  "/server/document/get?width=1000&url=",
+      normal: "/server/document/get?width=1500&url=",
+      big:    "/server/document/get?width=2000&url="
     },
     
     fixtures: {

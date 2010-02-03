@@ -31,14 +31,15 @@ MvoEdge.ContentView = SC.ScrollView.extend(
     @property {MvoEdge.CoreDocumentNode}
     @binding MvoEdge.masterController.masterSelection
   */
-  masterSelectionBinding: "MvoEdge.masterController.masterSelection", 
+  masterSelectionBinding: 'MvoEdge.masterController.masterSelection', 
   
   /**
-    @property {Boolean}
+    Binds to the isFirstFile property of the masterController
     
-    YES at the begining.  
+    @property {Boolean}
+    @binding MvoEdge.masterController.isFirstFile.  
   */   
-  isFirstFile: YES,
+  isFirstFileBinding: 'MvoEdge.masterController.isFirstFile',
   
   /** 
     Original width.
@@ -162,47 +163,10 @@ MvoEdge.ContentView = SC.ScrollView.extend(
   adjustZoomValue: function () {
     // retreive view width and height, zoomFactor and zoomStep
     var contentWidth = this.get('layer').clientWidth;
-    var contentHeight = this.get('layer').clientHeight;      
-    var zoomFactor = this.get('zoomValue');
-    var zoomStep = MvoEdge.zoomController._current_zoom_step;  
+    var contentHeight = this.get('layer').clientHeight;  
     
-    var isWidthOK = this.get('_originalWidth') * zoomFactor < contentWidth ? 
-        YES : NO;
-                  
-    //adjust first width
-    while (!isWidthOK) {
-      zoomStep--;
-      if (MvoEdge.zoomController.isZoomStepValid(zoomStep)) {
-        zoomFactor = MvoEdge.zoomController.getZoomFactorForThisStep(zoomStep);
-        if (this.get('_originalWidth') * zoomFactor < contentWidth) {
-          isWidthOK = YES;
-        }
-      }
-      else {
-        //if zoomStep is not valid stop minimize 
-        zoomStep ++;
-        isWidthOK = YES;
-      }     
-    }
-    var isHeightOK = this.get('_originalHeight') * zoomFactor < contentHeight ?
-          YES : NO;
-
-    //adjust height
-    while (!isHeightOK) {
-      zoomStep--;
-      if (MvoEdge.zoomController.isZoomStepValid(zoomStep)) {
-        zoomFactor = MvoEdge.zoomController.getZoomFactorForThisStep(zoomStep);
-        if (this.get('_originalHeight') * zoomFactor < contentHeight) {
-          isHeightOK = YES;
-        }
-      }
-      else {
-        //if zoomStep is not valid stop minimize 
-        zoomStep ++;
-        isHeightOK = YES;
-      }
-    }
-    MvoEdge.zoomController.setCurrentValue(zoomStep);
-    MvoEdge.logger.info('contentView adjust zoom values');
+    MvoEdge.zoomController.setBestZoom(contentWidth, contentHeight, 
+        this.get('_originalWidth'), this.get('_originalHeight'));
   }
+
 });
