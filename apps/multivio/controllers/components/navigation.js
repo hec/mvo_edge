@@ -36,7 +36,7 @@ Multivio.navigationController = SC.ObjectController.create(
   /**
     @binding {Multivio.CoreDocumentNode}
 
-    Binds to the master selection.
+    Binds to the masterController's masterSelection.
    */
   contentBinding: SC.Binding.single("Multivio.masterController.masterSelection"),
  
@@ -62,7 +62,6 @@ Multivio.navigationController = SC.ObjectController.create(
         this.set('currentPage', newPage);
       }    
     } else {
-      // TODO : throw exception and log error
       var errMess = "Unable to retrieve the masterSelection !!";
       Multivio.logger.error(errMess);
       throw {message: errMess};
