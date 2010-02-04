@@ -5,14 +5,16 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
-/** @class
+/** 
+  @class
 
-  (Document your Model here)
+  A CoredocumentNode is a Record with a guid, a parentId, a nextId, 
+  a previousId, a sequenceNumber, a localSequenceNumber, a label, a metadata,
+  an url and children.
 
-  @extends SC.Record
-  @version 0.1
+  @extends {SC.Record}
+  @version {0.1.0}
 */
 Multivio.CoreDocumentNode = SC.Record.extend(
 /** @scope Multivio.CoreDocumentNode.prototype */ {
@@ -31,11 +33,13 @@ Multivio.CoreDocumentNode = SC.Record.extend(
   
   /**
     @property {Boolean}
+    
     Is this a leaf CDM node?
     A CDM leaf node has:
       - no children;
       - a urlDefault;
       - a sequenceNumber;
+    
     @default {NO}
   */
   isLeafNode: function () {
@@ -46,8 +50,10 @@ Multivio.CoreDocumentNode = SC.Record.extend(
 
   /**
     @property {Boolean}
+    
     Is this an inner CDM node?
     An inner CDM node has children
+    
     @default {NO}
   */
   isInnerNode: function () {

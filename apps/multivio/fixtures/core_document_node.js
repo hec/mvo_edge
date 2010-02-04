@@ -5,7 +5,6 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
 sc_require('models/core_document_node');
 

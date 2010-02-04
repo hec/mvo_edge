@@ -5,7 +5,6 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
 /** @class
 
@@ -15,7 +14,9 @@
   In this case it holds a reference to the currently selected object (image),
   in order to keep the thumbnail and tree views synchronized.
 
-  @extends SC.ArrayController
+  @author {mmo}
+  @extends {SC.ArrayController}
+  @since {0.1.0}
 */
 
 Multivio.masterController = SC.ArrayController.create(
@@ -24,9 +25,11 @@ Multivio.masterController = SC.ArrayController.create(
   allowsMultipleSelection: NO,
   
   /**
+    @property {Multivio.CoreDocumentNode}
+    
+    The masterSelection is the selected CDM node.
     The guid of the selected file/object that is currently being displayed by
     the application
-    @property {Multivio.CoreDocumentNode} masterSelection the selected CDM node
   */
   masterSelection: undefined,
   
@@ -51,12 +54,16 @@ Multivio.masterController = SC.ArrayController.create(
   },
 
   /**
+    @method 
+    
     The the document's descriptive metadata contained in the root node of the
     CoreDocumentModel
-    @property {Array} descriptiveMetadataDictionary
+    
+    @observes {content} first node contains the descriptiveMetadataDictionary
   */
   descriptiveMetadataDictionary: function () {
     var metadata = this.get('content').firstObject().get('metadata');
     return metadata;
-  }.property('content')
+  }.property('content')  
+
 });

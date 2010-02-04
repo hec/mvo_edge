@@ -11,35 +11,32 @@
 
   This controller is used to navigate in the document.
 
-  @author fma
-  @extends SC.ObjectController
-  @since 0.0.1
+  @author {fma}
+  @extends {SC.ObjectController}
+  @since {0.1.0}
 */
 Multivio.navigationController = SC.ObjectController.create(
 /** @scope Multivio.navigationController.prototype */ {
 
   /** 
-    CurrentPage.
- 
-    @property {Integer}
+    @property {Number}
+    
     @default null
   */
   currentPage: null,
   
-  /** 
-    Number of pages.
+  /**
+    @property {Number} 
     
     @private
-    
-    @property {Integer}
     @default null
   */
   _numberOfPages: null,
   
   /**
+    @binding {Multivio.CoreDocumentNode}
+
     Binds to the master selection.
-    
-    @property {Multivio.CoreDocumentNode}
    */
   contentBinding: SC.Binding.single("Multivio.masterController.masterSelection"),
  
@@ -50,8 +47,7 @@ Multivio.navigationController = SC.ObjectController.create(
     master selection.
     
     @private
-    
-    @observes content
+    @observes {content}
   */
   _contentDidChange: function () {
     // find the page that corresponds to the current master selection
@@ -81,8 +77,7 @@ Multivio.navigationController = SC.ObjectController.create(
     currentPage.
     
     @private
-    
-    @observes currentPage
+    @observes {currentPage}
   */  
   _currentPageDidChange: function () {
     if (!SC.none(this.get('currentPage'))) {
@@ -106,8 +101,7 @@ Multivio.navigationController = SC.ObjectController.create(
   /**
     @method
     
-    Go to the next page.
-    
+    Go to the next page.    
   */ 
   goToNextPage: function () {
     var np = this.get('currentPage') + 1;
@@ -120,7 +114,6 @@ Multivio.navigationController = SC.ObjectController.create(
     @method
     
     Go to the previous page.
-    
   */    
   goToPreviousPage: function () {
     var pp = this.get('currentPage') - 1;
@@ -133,7 +126,6 @@ Multivio.navigationController = SC.ObjectController.create(
     @method
     
     Go to the first page.
-    
   */    
   goToFirstPage: function () {
     this.set('currentPage', 1);
@@ -143,7 +135,6 @@ Multivio.navigationController = SC.ObjectController.create(
     @method
     
     Go to the last page.
-    
   */ 
   goToLastPage: function () {
     var nbp = this.get('_numberOfPages');
@@ -156,9 +147,8 @@ Multivio.navigationController = SC.ObjectController.create(
     Retrieve the number of pages.
     
     @private
-
-    @property {Integer} _numberOfPages
-    @returns {Integer} Return the number of pages.
+    @property {_numberOfPages}
+    @returns {Number} the number of pages.
   */ 
   _retrieveNumberOfPages: function () {
     var thumbnails = Multivio.store.find(Multivio.Thumbnail);
@@ -169,7 +159,6 @@ Multivio.navigationController = SC.ObjectController.create(
     @method
 
     Initialize this controller, retrieve the number of pages.
-
   */
   initialize: function () {
     this._numberOfPages = this.get('_retrieveNumberOfPages');

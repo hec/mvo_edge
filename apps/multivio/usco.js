@@ -5,8 +5,6 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
- 
  
 /**
   @class
@@ -17,7 +15,7 @@
   It provides a set of methods for displaying information on the screen using
   different kinds of panels.
   
-  @author {FCA}
+  @author {fca}
   @extends {Object}
   @since {0.1.0}
 */
@@ -31,9 +29,9 @@ Multivio.usco = SC.Object.create(
     Displays an alert panel with different icon and button, according to the
     case.
 
-    @param message panel main message
-    @param description panel secondary message
-    @param button1 text inside button1 (tipically in the "OK" position)
+    @param {String} message panel main message
+    @param {String} description panel secondary message
+    @param {String} button1 text inside button1 (tipically in the "OK" position)
   */
   showAlertPaneError: function (message, description, button1) {
     var pane = SC.AlertPane.error(
@@ -64,11 +62,14 @@ Multivio.usco = SC.Object.create(
 
     Displays a warning panel.
 
-    @param message panel main message
-    @param description panel secondary message
-    @param button1 text inside button1 (tipically in the "OK" position)
-    @param button2 text inside button2 (tipically in the "Cancel" position)
-    @param controller reference to the controller used to manage the click event
+    @param {String} message panel main message
+    @param {String} description panel secondary message
+    @param {String} button1 text inside button1 
+        (tipically in the "OK" position)
+    @param {String} button2 text inside button2 
+        (tipically in the "Cancel" position)
+    @param {String} controller reference to the controller used to 
+        manage the click event
   */
   showAlertPaneWarn: function (message, description, button1, button2, controller) {
     var pane = SC.AlertPane.warn(
@@ -87,11 +88,14 @@ Multivio.usco = SC.Object.create(
 
     Displays an alert w/o any icon.
     
-    @param message panel main message
-    @param description panel secondary message
-    @param button1 text inside button1 (tipically in the "OK" position)
-    @param button2 text inside button2 (tipically in the "Cancel" position)
-    @param controller reference to the controller used to manage the click event
+    @param {String} message panel main message
+    @param {String} description panel secondary message
+    @param {String} button1 text inside button1 
+        (tipically in the "OK" position)
+    @param {String} button2 text inside button2 
+        (tipically in the "Cancel" position)
+    @param {String} controller reference to the controller used to 
+        manage the click event
   */
   showAlertPanePlain: function (message, description, button1, button2, controller) {
     var pane = SC.AlertPane.plain(

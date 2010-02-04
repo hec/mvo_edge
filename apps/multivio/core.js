@@ -5,13 +5,13 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
-/** @namespace
+/** 
+  @namespace
 
-  My cool new app.  Describe your application.
+  Multivio is a web application for digital documents.
   
-  @extends SC.Object
+  @extends {SC.Object}
 */
 Multivio = SC.Object.create(
   /** @scope Multivio.prototype */ {

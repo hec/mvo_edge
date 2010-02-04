@@ -5,33 +5,39 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
 /** @class
 
   This controller manages the behavior of the tree view. It depends on
   the master controller.
 
-  @extends SC.TreeController
+  @author {che}
+  @extends {SC.TreeController}
+  @since {0.1.0}  
 */
 
 Multivio.treeController = SC.TreeController.create(
 /** @scope Multivio.treeController.prototype */ {
 
   /**
-    Binds to the master selection
-    @property {Multivio.CoreDocumentNode}
-   */
+    @binding {Multivio.CoreDocumentNode}
+    
+    Binds to the masterController's masterSelection
+  */
   masterSelectionBinding: "Multivio.masterController.masterSelection",
 
   /**
     A conversion table (masterSelectionId -> treeNodeId) used to quickly
     determine the treeNode associated with a certain master selection
+    
+    @private
    */
   _cdmNodeToTreeNode: {},
   
   /**
-  An Array that contains all nodes of the tree with there id.   
+    An Array that contains all nodes of the tree with there id.
+  
+    @private
   */
   _treeNodeById: {},
   
@@ -73,12 +79,12 @@ Multivio.treeController = SC.TreeController.create(
   },
   
   /**
-  @method
+    @method
 
-  Create the Tree structure using a mixin between 
-  Multivio.Tree & Multivio.TreeContent
+    Create the Tree structure using a mixin between 
+    Multivio.Tree & Multivio.TreeContent
 
-  @private
+    @private
   */  
   _buildTree: function () {
     var treeNodes = Multivio.store.find(Multivio.Tree).sortProperty('guid');
@@ -229,10 +235,13 @@ Multivio.treeController = SC.TreeController.create(
   },
 
   /**
+    @method
+    
     Updates the masterSelection binding if the currently 
     selected tree node has changed.
 
-    @observes selection
+    @private
+    @observes {selection}
    */
   _selectionDidChange: function () {
     var needToChange =  YES;
@@ -287,7 +296,8 @@ Multivio.treeController = SC.TreeController.create(
     Updates selection by observing changes in master controller's master
     selection
 
-    @observes masterSelection
+    @private
+    @observes {masterSelection}
   */
   _masterSelectionDidChange: function () {
     var needToChange = YES;

@@ -32,9 +32,9 @@
   columns have fixed width, whereas the central row and column are elastic in
   order to fit the canvas.
 
-  @author mmo
-  @extends SC.Object
-  @since 0.1.0
+  @author {mmo}
+  @extends {SC.Object}
+  @since {0.1.0}
 */
 Multivio.GridLayout3x3 = {
 
@@ -71,15 +71,15 @@ Multivio.GridLayout3x3 = {
     Grid dimension properties
   */
 
-  /** @property {Integer} */
+  /** @property {Number} */
   _leftStripWidth  : 0,
-  /** @property {Integer} */
+  /** @property {Number} */
   _rightStripWidth : 0,
-  /** @property {Integer} */
+  /** @property {Number} */
   _headerHeight    : 0,
-  /** @property {Integer} */
+  /** @property {Number} */
   _footerHeight    : 0,
-  /** @property {Integer} */
+  /** @property {Number} */
   _margin          : 0,
 
   /**
@@ -88,14 +88,14 @@ Multivio.GridLayout3x3 = {
     Initilize grid
 
     @param {Object} params layout parameters hash with the following content:
-        {Integer} leftStripWidth
-        {Integer} rightStripWidth
-        {Integer} headerHeight
-        {Integer} footerHeight
-        {Integer} marginTop
-        {Integer} marginRight
-        {Integer} marginBottom
-        {Integer} marginLeft
+        {Number} leftStripWidth
+        {Number} rightStripWidth
+        {Number} headerHeight
+        {Number} footerHeight
+        {Number} marginTop
+        {Number} marginRight
+        {Number} marginBottom
+        {Number} marginLeft
   */
   layOutGrid: function (params) {
     // validate input parameters
@@ -133,10 +133,10 @@ Multivio.GridLayout3x3 = {
 
     @param {Object} params layout parameters hash with the following content:
         {String}  name   component name
-        {Integer} x      x coordinate on grid
-        {Integer} y      y coordinate on grid
-        {Integer} xlen   x length on grid
-        {Integer} ylen   y length on grid
+        {Number} x      x coordinate on grid
+        {Number} y      y coordinate on grid
+        {Number} xlen   x length on grid
+        {Number} ylen   y length on grid
   */
   layOutComponent: function (params) {
     // validate input parameters
@@ -305,6 +305,6 @@ Multivio.GridLayout3x3 = {
         [null, null, null],
         [null, null, null]
       ];
-    
   }
+
 };

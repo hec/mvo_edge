@@ -5,7 +5,7 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
+
 //require('views/content');
 //require('views/thumbnail');
 //require('views/thumbnailContent');

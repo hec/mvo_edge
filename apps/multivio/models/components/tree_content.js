@@ -5,7 +5,6 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
 /**
   @mixin
@@ -18,7 +17,7 @@
   To have more information see the documentation of the SC.TreeController, 
   SC.TreeItemContent and the demo outline. 
 
-  @author {CHE}      
+  @author {che}      
   @extends {Object}   
   @since {0.1.0} 
 */
@@ -27,15 +26,13 @@ Multivio.TreeContent = {
   
   /**
   @property {Boolean}
-  
   */
   treeItemIsExpanded: undefined,
   
   /**
   @property {Number}
   
-  The size of the label
-  
+  The size of the label  
   */
   labelWidth: undefined,
 

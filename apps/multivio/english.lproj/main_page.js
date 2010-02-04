@@ -5,9 +5,14 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
-// This page describes the main user interface for your application.
+/**
+  @class
+
+  Create the page main page of Multivio.
+  
+  @since {0.1.0}
+*/
 
 Multivio.mainPage = SC.Page.design({
 
@@ -15,8 +20,8 @@ Multivio.mainPage = SC.Page.design({
   // Add childViews to this pane for views to display immediately on page 
   // load.
   mainPane: SC.MainPane.design({
-    //childViews: 'headerView middleView footerView'.w(),
-    // child view are defined in views.js
+    
+  // child view are defined in views.js
   }).classNames('workspace_black')
 
 });

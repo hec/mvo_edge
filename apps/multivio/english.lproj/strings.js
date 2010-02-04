@@ -5,7 +5,6 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
 // Place strings you want to localize here.  In your app, use the key and
 // localize it using "key string".loc().  HINT: For your key names, use the

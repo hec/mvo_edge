@@ -1,7 +1,10 @@
-// ==========================================================================
-// Project:   Multivio.thumbnail Unit Test
-// Copyright: (c) 2009 RERO
-// ==========================================================================
+/**
+==============================================================================
+  Project:    Multivio - https://www.multivio.org/
+  Copyright:  (c) 2009-2010 RERO
+  License:    See file license.js
+==============================================================================
+*/
 /*globals Multivio module test ok equals same stop start */
 
 var myThumbnailController, myMasterController, rec, sel1, rec2, sel2;

@@ -5,13 +5,14 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
 /** @class
 
   This class handles the positioning of the interface components on the screen.
 
-  @extends SC.Object
+  @author {mmo}
+  @extends {SC.Object}
+  @since {0.1.0}
   @see Multivio.mainPage
 */
 
@@ -29,6 +30,7 @@ Multivio.layoutController = SC.Object.create(
     during application setup.
     
     @see Multivio.main
+    @param {String} componentLayoutName
   */
   configureWorkspace: function (componentLayoutName) {
     SC.RunLoop.begin();
@@ -58,4 +60,5 @@ Multivio.layoutController = SC.Object.create(
     SC.RunLoop.end();
     Multivio.logger.info('layoutController workspace initialized');
   }
+
 });

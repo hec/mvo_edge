@@ -15,7 +15,7 @@
   For more explanation see:  
   http://frozencanuck.wordpress.com/2009/09/06/creating-a-simple-custom-list-item-view-part-1/
 
-  @author {CHE}     
+  @author {che}     
   @extends {View}  
   @since {0.1.0}    
 */
@@ -28,7 +28,10 @@ Multivio.ThumbnailContentView = SC.View.extend(SC.ContentDisplay, {
   /**
     @method
     
-    Override render method to add 'isSelected' property 
+    Override render method to add 'isSelected' property
+    
+    @param {Object} context
+    @param {Boolean} firstTime 
   */  
   render: function (context, firstTime) {
     var isSelected = this.get('isSelected');
@@ -92,7 +95,7 @@ Multivio.ThumbnailContentView = SC.View.extend(SC.ContentDisplay, {
   
   this class contains only the render method
 
-  @author {CHE}     
+  @author {che}     
   @extends {LabelView}  
   @since {0.1.0}    
 */
@@ -102,6 +105,9 @@ Multivio.LabelView = SC.LabelView.extend({
     @method
     
     Override render method to add 'isSelected' property 
+
+    @param {Object} context
+    @param {Boolean} firstTime
   */
   render: function (context, firstTime) {
     var isSelected = this.get('isSelected');

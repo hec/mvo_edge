@@ -5,57 +5,56 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
 /** @class
 
-  (Document Your View Here)
+  The mainContentView of the application
 
-  @extends SC.ScrollView
+  @author {che}
+  @extends {SC.ScrollView}
+  @since {0.1.0}
 */
 Multivio.ContentView = SC.ScrollView.extend(
 /** @scope Multivio.Content.prototype */ {
 
   /**
+    @binding {Number}
+    
     Binds to the zoomValue in the zoom controller.
-
-    @property {Integer}
-    @binding "Multivio.zoomController.current_zoom_factor"
    */
   zoomValueBinding:
       SC.Binding.oneWay('Multivio.zoomController.current_zoom_factor'), 
   
   /**
-    Binds to the master selection
+    @binding {Multivio.CoreDocumentNode}
     
-    @property {Multivio.CoreDocumentNode}
-    @binding Multivio.masterController.masterSelection
+    Binds to the masterController' masterSelection
   */
   masterSelectionBinding: 'Multivio.masterController.masterSelection', 
   
   /**
-    Binds to the isFirstFile property of the masterController
+    @binding {Boolean}
     
-    @property {Boolean}
-    @binding Multivio.masterController.isFirstFile.  
+    Binds to the isFirstFile property of the masterController
   */   
   isFirstFileBinding: 'Multivio.masterController.isFirstFile',
   
   /** 
+    @property {Number}
     Original width.
 
     @private
-    @property {Integer}
-    @default null
+    @default {null}
   */  
   _originalWidth: null,
   
   /** 
+    @property {Number}
+    
     Original height.
-
+    
     @private
-    @property {Integer}
-    @default null
+    @default {null}
   */    
   _originalHeight: null,  
   
@@ -64,7 +63,7 @@ Multivio.ContentView = SC.ScrollView.extend(
 
     Zoom in the picture.
 
-    @observes zoomValue
+    @observes {zoomValue}
   */  
   doZoom: function () {
     var zoomVal = this.get('zoomValue');
@@ -106,12 +105,14 @@ Multivio.ContentView = SC.ScrollView.extend(
   /**
     @method 
     
-    Callback applied after image has loaded.
+    Callback applied after image has been loaded.
     
     It puts the image in the container and applies the current zoom factor.
 
     @private
-    @callback SC.imageCache.load
+    @callback {SC.imageCache.load}
+    @param {String} url
+    @param {Image} image
   */
   _adjustSize: function (url, image) {
     SC.RunLoop.begin();
@@ -136,7 +137,8 @@ Multivio.ContentView = SC.ScrollView.extend(
     Updates value by observing changes in master controller's master
     selection
     
-    @observes masterSelection
+    @private
+    @observes {masterSelection}
   */
   _masterSelectionDidChange: function () {
     var currentMasterSelection = this.get('masterSelection');

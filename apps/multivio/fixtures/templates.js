@@ -38,7 +38,7 @@
     All the content mentioned in the templates is mandatory (except if marked
     as "if applicable")
   
-    {TYPE} can be, in all cases: {Integer}, {String}, {Double}, {Float},
+    {TYPE} can be, in all cases: {Number}, {String}, {Double}, {Float},
     {Object}, or any other custom class
 
 

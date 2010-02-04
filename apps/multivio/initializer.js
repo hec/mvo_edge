@@ -5,13 +5,13 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
+
 /**
   @class
 
   Object that retrieves CDM and initialize all components. 
 
-  @author {CHE}      
+  @author {che}      
   @extends {Object}   
   @since {0.1.0} 
 */
@@ -37,9 +37,10 @@ Multivio.initializer = SC.Object.create(
   isFirstTime: YES,
 
   /**
+    @binding {Multivio.configurator.inputParameters}
+    
     Binds to the inputParameters of the configurator
-    @property {Multivio.configurator.inputParameters}
-   */
+  */
   inputParametersBinding: "Multivio.configurator.inputParameters",
 
   /**
@@ -53,6 +54,8 @@ Multivio.initializer = SC.Object.create(
     @method
 
     Read input parameters in order to decide how to fetch application data
+  
+    @private
     @observes {inputParameters}
   */
   _inputParametersDidChange: function () {
@@ -110,6 +113,8 @@ Multivio.initializer = SC.Object.create(
     @method
 
     Fetch CoreDocumentModel from the server.
+    
+    @private
   */
   _fetchCDMFromServer: function () {
     // use location.hash to prevent splitting the url
@@ -136,6 +141,8 @@ Multivio.initializer = SC.Object.create(
     @method
 
     Fetch CoreDocumentModel from fixture data.
+    
+    @private
   */
   _fetchCDMFromFixtures: function () {
     var name = this.get('inputParameters').name;
@@ -190,14 +197,14 @@ Multivio.initializer = SC.Object.create(
     Parse and store the CDM response 
 
     @private  
-    @param {String} {response} {response received from the server}
+    @param {String} response the response received from the server
   */ 
   _storeCDM: function (response) {
     Multivio.logger.debug('initializer: response received from the server: %@'.
         fmt(response.get("body")));
     var isError = NO;
     var jsonRes = response.get("body");
-    //TO DO VERIFY IF ID = -1 to call ErrorPage
+
     Multivio.store = SC.Store.create();
     for (var key in jsonRes) {
       if (jsonRes.hasOwnProperty(key)) {
@@ -354,6 +361,13 @@ Multivio.initializer = SC.Object.create(
     SC.RunLoop.end();
   },
 
+  /**
+    @method
+
+    Hide waiting page
+
+    @private  
+  */
   _hideWaitingPage: function () {
     // remove waiting pane
     SC.RunLoop.begin();

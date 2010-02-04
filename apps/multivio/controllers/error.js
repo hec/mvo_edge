@@ -5,16 +5,15 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
 /**
   @class
 
   Controller for errors that occured on the server side.
 
-  @author CHE
+  @author {che}
   @extends {SC.ArrayController}
-  @since 0.1.0
+  @since {0.1.0}
 */
 
 Multivio.errorController = SC.ArrayController.create(

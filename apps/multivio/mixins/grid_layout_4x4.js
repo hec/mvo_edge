@@ -16,9 +16,9 @@
   columns so that components can be laid out according to grid-based
   coordinates.
 
-  @author mmo
-  @extends SC.Object
-  @since 0.0.1
+  @author {mmo}
+  @extends {SC.Object}
+  @since {0.1.0}
 */
 Multivio.GridLayout4x4 = {
 
@@ -50,17 +50,17 @@ Multivio.GridLayout4x4 = {
     Grid dimension properties
   */
 
-  /** @property {Integer} */
+  /** @property {Number} */
   _leftStripWidth  : 0,
-  /** @property {Integer} */
+  /** @property {Number} */
   _rightStripWidth : 0,
-  /** @property {Integer} */
+  /** @property {Number} */
   _headerHeight    : 0,
-  /** @property {Integer} */
+  /** @property {Number} */
   _footerHeight    : 0,
-  /** @property {Integer} */
+  /** @property {Number} */
   _xCenter         : 0,
-  /** @property {Integer} */
+  /** @property {Number} */
   _yCenter         : 0,
 
   /**
@@ -68,12 +68,12 @@ Multivio.GridLayout4x4 = {
 
     Initilize grid
 
-    @param {Integer} leftStripWidth
-    @param {Integer} rightStripWidth
-    @param {Integer} headerHeight
-    @param {Integer} footerHeight
-    @param {Integer} xCenter
-    @param {Integer} yCenter
+    @param {Number} leftStripWidth
+    @param {Number} rightStripWidth
+    @param {Number} headerHeight
+    @param {Number} footerHeight
+    @param {Number} xCenter
+    @param {Number} yCenter
   */
   layOutGrid: function (
       leftStripWidth, rightStripWidth, headerHeight, footerHeight,
@@ -99,10 +99,10 @@ Multivio.GridLayout4x4 = {
     Lay out a component on this view's grid
 
     @param {Object}  component
-    @param {Integer} xCoord x coordinate on grid
-    @param {Integer} xLen   x length on grid
-    @param {Integer} yCoord y coordinate on grid
-    @param {Integer} yLen   y length on grid
+    @param {Number} xCoord x coordinate on grid
+    @param {Number} xLen   x length on grid
+    @param {Number} yCoord y coordinate on grid
+    @param {Number} yLen   y length on grid
   */
   layOutComponent: function (component, xCoord, xLen, yCoord, yLen) {
     var errMess = "";

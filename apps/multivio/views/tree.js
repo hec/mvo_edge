@@ -5,14 +5,13 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
 /**
   @class
 
   View that contains the tree
 
-  @author {CHE}     
+  @author {che}     
   @extends {ListView}  
   @since {0.1.0}    
 */
@@ -20,7 +19,7 @@ Multivio.TreeView = SC.ListView.extend(
 /** @scope Multivio.TreeView.prototype */ {
   
   /**
-    @property
+    @property {Boolean}
     
     _childViewsDidChange is called every time the user 
     expand or collapse a branch of the tree. 
@@ -34,7 +33,7 @@ Multivio.TreeView = SC.ListView.extend(
     Update the treeView width.
     The new width is the width of the largest label.
 
-    @observes childViews
+    @observes {childViews}
   */
   _childViewsDidChange: function () {
     var childViews = this.get('childViews');

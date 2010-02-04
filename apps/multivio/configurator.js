@@ -5,16 +5,15 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
 
 /**
   @class
 
   Object that get and store all config parameters.
 
-  @author CHE
+  @author {che}
   @extends {SC.Object}
-  @since 0.1.0
+  @since {0.1.0}
 */
 Multivio.configurator = SC.Object.create(
 /** @scope Multivio.configurator.prototype */ {
@@ -32,7 +31,6 @@ Multivio.configurator = SC.Object.create(
     @property {Object}
   
     This object contains all parameters for logs
-  
   */
   logParameters: {
     log: {
@@ -47,7 +45,6 @@ Multivio.configurator = SC.Object.create(
     @property {Object}
   
     This object contains all urls used by the application
-  
   */
   baseUrlParameters: {
     get: "/server/cdm/get?url=",
@@ -150,7 +147,7 @@ Multivio.configurator = SC.Object.create(
     
     Read and store parameters of the Url
     
-    @param {String} {params} 
+    @param {String} params 
   */
   readInputParameters: function (params) {
     var prop = {};

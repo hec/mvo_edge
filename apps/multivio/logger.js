@@ -5,7 +5,7 @@
   License:    See file license.js
 ==============================================================================
 */
-/*globals Multivio */
+
 //require('configurator');
 //require('models/core_document_node');
  
@@ -23,7 +23,7 @@ Multivio.LOG_DEBUG = 10000;
  
   Object logger.
  
-  @author {CHE}
+  @author {che, fca, mmo}
   @extends {Object}
   @since {0.1.0}
 */
@@ -110,7 +110,8 @@ Multivio.logger = SC.Object.create(
     errorLogger.
  
     @private
-    @param Object appender
+    @param {Object} appender
+    @param {Number} level
   */
   _attachAppender: function (appender, level) {
     for (var i = 0; i < this.loggers.length; i++) {
@@ -121,22 +122,57 @@ Multivio.logger = SC.Object.create(
     }
   },
   
+  /**
+    @method
+    
+    Create a log of error
+    
+    @param {String} message
+  */
   error: function (message) {
     this.errorLogger.error(message);
   },
- 
+
+  /**
+    @method
+    
+    Create a log of warning
+    
+    @param {String} message
+  */ 
   warning: function (message) {
     this.warningLogger.warn(message);
   },
  
+  /**
+    @method
+    
+    Create a log of info
+    
+    @param {String} message
+  */
   info: function (message) {
     this.infoLogger.info(message);
   },
  
+  /**
+    @method
+    
+    Create a log of debug
+    
+    @param {String} message
+  */
   debug: function (message) {
     this.debugLogger.debug(message);
   },
  
+  /**
+    @method
+    
+    Create a log of logException
+    
+    @param {String} message
+  */ 
   logException: function (ex, customMessage) {
     var exDetails = "\n\t{";
     for (var key in ex) {
@@ -154,4 +190,3 @@ Multivio.logger = SC.Object.create(
   }
  
 });
- 
